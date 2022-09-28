@@ -1,1 +1,1 @@
-REQUIREMENTS_FILE = "requirements.in"
+DEFAULT_REQUIREMENTS_FILE = "requirements.in"
