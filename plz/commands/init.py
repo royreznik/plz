@@ -3,8 +3,7 @@ from typing import Optional, Dict
 
 import click
 
-from .consts import DEFAULT_REQUIREMENTS_FILE
-
+DEFAULT_REQUIREMENTS_FILE = "requirements.in"
 
 # noinspection PyTypeChecker
 @click.command("init")
