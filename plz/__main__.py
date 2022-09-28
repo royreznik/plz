@@ -2,7 +2,7 @@ from pathlib import Path
 
 import click
 
-from .commands import init, lock
+from .commands import init, lock, install
 
 
 # noinspection PyTypeChecker
@@ -18,7 +18,10 @@ def cli(ctx: click.Context, path: Path) -> None:
 
 # noinspection PyTypeChecker
 cli.add_command(init)
-cli.add_command(lock, "lock")
+# noinspection PyTypeChecker
+cli.add_command(lock)
+# noinspection PyTypeChecker
+cli.add_command(install)
 
 if __name__ == "__main__":
     cli()

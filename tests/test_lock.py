@@ -4,7 +4,7 @@ from pathlib import Path
 from click.testing import CliRunner
 
 from plz.__main__ import cli
-from plz.commands.consts import DEFAULT_REQUIREMENTS_FILE
+from plz.commands.init import DEFAULT_REQUIREMENTS_FILE
 
 
 # Sanity check
