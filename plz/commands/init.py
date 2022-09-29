@@ -1,11 +1,10 @@
-from pathlib import Path
-from typing import Optional, Dict
+from typing import Dict
 
 import click
 
 DEFAULT_REQUIREMENTS_FILE = "requirements.in"
 
-# noinspection PyTypeChecker
+
 @click.command("init")
 @click.pass_obj
 def init(config: Dict) -> None:
@@ -16,5 +15,7 @@ def init(config: Dict) -> None:
             f"did you meant to run `plz install`?"
         )
     requirements_file.touch()
-    click.secho('Requirements file created!'
-                'You can add requirements and run `plz install`', fg='green')
+    click.secho(
+        "Requirements file created!" "You can add requirements and run `plz install`",
+        fg="green",
+    )

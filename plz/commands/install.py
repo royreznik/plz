@@ -4,7 +4,6 @@ from typing import Dict
 
 import click
 import virtualenv
-from virtualenv.create.creator import Creator
 from piptools.__main__ import sync as _sync
 from virtualenv.discovery.py_info import PythonInfo
 
