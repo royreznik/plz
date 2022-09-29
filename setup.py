@@ -1,7 +1,9 @@
+from pathlib import Path
+
 from setuptools import setup
 from plz import __version__
 
-DEPENDENCIES = ["pip-tools", "virtualenv", "click"]
+DEPENDENCIES = Path("requirements.in").read_text().split()
 
 setup(
     name="plz",
