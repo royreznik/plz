@@ -1,13 +1,12 @@
 from pathlib import Path
 
 from setuptools import setup
-from plz import __version__
 
 DEPENDENCIES = Path("requirements.in").read_text().split()
 
 setup(
     name="plz",
-    version=__version__,
+    version="0.0.0",
     author="Roy Reznik",
     author_email="royreznik@gmail.com",
     license="MIT License",
