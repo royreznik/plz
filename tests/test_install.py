@@ -24,7 +24,7 @@ def test_install_sync_requirements(runner: CliRunner, isolated_dir: Path) -> Non
         isolated_dir
         / VIRTUALENV_DIR_NAME
         / PythonInfo().install_path("scripts")
-        / Path(sys.executable).name
+        / Path("python").with_suffix(".exe" if sys.platform == "win32" else "")
     )
     assert subprocess.run(
         [python_path, "-c", "import importlib;importlib.import_module('0')"], check=True

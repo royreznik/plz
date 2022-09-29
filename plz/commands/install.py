@@ -23,11 +23,12 @@ def install(obj: Dict, ctx: click.Context, *args, **kwargs) -> None:
     venv_dir = obj["path"] / VIRTUALENV_DIR_NAME  # type: Path
     if not venv_dir.exists():
         virtualenv.cli_run([str(venv_dir)])
-    kwargs["python_executable"] = venv_dir / PythonInfo().install_path("scripts") / Path(sys.executable).name
+    kwargs["python_executable"] = (
+        venv_dir
+        / PythonInfo().install_path("scripts")
+        / Path("python").with_suffix(".exe" if sys.platform == "win32" else "")
+    )
     ctx.forward(_sync.cli, *args, **kwargs)
 
+
 install.params += _sync.cli.params
-
-
-def _is_inside_virtualenv():
-    return sys.prefix != sys.base_prefix

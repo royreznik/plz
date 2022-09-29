@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         os: [Ubuntu, Windows]
-        python-version: ["3.7", "3.8", "3.9", "3.10"]
+        python-version: ["3.8", "3.9", "3.10"]
         include:
           - os: Ubuntu
             image: ubuntu-22.04
@@ -44,14 +44,6 @@ jobs:
         with:
           path: .venv
           key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/*requirements.txt') }}
-
-      - name: Ensure cache is healthy
-        if: steps.cache.outputs.cache-hit == 'true'
-        run: |
-          # `timeout` is not available on macOS, so we define a custom function.
-          [ "$(command -v timeout)" ] || function timeout() { perl -e 'alarm shift; exec @ARGV' "$@"; }
-          # Using `timeout` is a safeguard against the Poetry command hanging for some reason.
-          timeout 10s pip --version || rm -rf .venv
 
       - name: Install dependencies
         run: make install
