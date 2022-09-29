@@ -1,7 +1,14 @@
 from pathlib import Path
+<<<<<<< HEAD
 
 from setuptools import setup
 
+=======
+
+from setuptools import setup
+from plz import __version__
+
+>>>>>>> c5066c8 (Export requirements to files)
 DEPENDENCIES = Path("requirements.in").read_text().split()
 
 setup(
