@@ -1,5 +1,5 @@
 from pathlib import Path
-from setuptools import setup
+from setuptools import setup, find_packages
 
 DEPENDENCIES = [r for r in Path("requirements.in").read_text().splitlines() if "-e" not in r]
 
@@ -12,7 +12,7 @@ setup(
     version=__version__,
     author="Roy Reznik",
     author_email="royreznik@gmail.com",
-    packages=["plz"],
+    packages=find_packages(),
     entry_points={
         "console_scripts": [
             "plz = plz:cli",

@@ -1,7 +1,7 @@
 BUMP_PART?=patch
 
 install:
-	python3 -m pip install -e .
+	python3 -m pip install .
 	plz install
 
 lint:

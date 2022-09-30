@@ -12,7 +12,7 @@ from .commands import init, install, lock
     "-p", "--path", type=click.Path(exists=True, path_type=Path, file_okay=False)
 )
 def cli(ctx: click.Context, path: Path) -> None:
-    path = path or Path.cwd()
+    path = path or Path(".")
     ctx.obj = {"path": path}
 
 
