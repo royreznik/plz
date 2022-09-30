@@ -7,3 +7,5 @@ flake8-black
 flake8-isort
 mypy
 wheel
+bump2version
+twine
