@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Dict
 
 import click
@@ -7,7 +8,7 @@ DEFAULT_REQUIREMENTS_FILE = "requirements.in"
 
 @click.command("init")
 @click.pass_obj
-def init(config: Dict) -> None:
+def init(config: Dict[str, Path]) -> None:
     requirements_file = config["path"] / DEFAULT_REQUIREMENTS_FILE
     if requirements_file.exists():
         raise click.BadParameter(

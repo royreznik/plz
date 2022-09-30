@@ -4,6 +4,7 @@ install:
 
 lint:
 	flake8 plz/ tests/
+	mypy plz/ tests/
 
 format:
 	isort plz/ tests/

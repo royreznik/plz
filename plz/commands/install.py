@@ -1,6 +1,6 @@
 import sys
 from pathlib import Path
-from typing import Dict
+from typing import Any, Dict
 
 import click
 import virtualenv
@@ -14,7 +14,9 @@ VIRTUALENV_DIR_NAME = ".venv"
 @click.command("install")
 @click.pass_context
 @click.pass_obj
-def install(obj: Dict, ctx: click.Context, *args, **kwargs) -> None:
+def install(
+    obj: Dict[str, Path], ctx: click.Context, *args: Any, **kwargs: Any
+) -> None:
     if kwargs["python_executable"] is not None:
         ctx.forward(_sync.cli, *args, **kwargs)
         return
