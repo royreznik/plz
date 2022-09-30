@@ -1,3 +1,5 @@
+BUMP_PART?=patch
+
 install:
 	python3 -m pip install -e .
 	python3 -m pip install -r dev-requirements.in # TODO: remove this when control dev deps in plz
@@ -19,5 +21,7 @@ build:
 	rm -rf build/
 
 publish: build
-	pip install 'twine>=1.5.0'
 	twine upload dist/* --verbose
+
+bump:
+	bumpversion $(BUMP_PART)
