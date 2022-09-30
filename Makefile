@@ -12,3 +12,12 @@ format:
 
 test:
 	pytest -svv tests/
+
+build:
+	rm -rf dist/
+	python setup.py sdist bdist_wheel
+	rm -rf build/
+
+publish: build
+	pip install 'twine>=1.5.0'
+	twine upload dist/* --verbose
