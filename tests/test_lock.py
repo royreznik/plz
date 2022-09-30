@@ -4,23 +4,27 @@ from pathlib import Path
 from click.testing import CliRunner
 
 from plz.__main__ import cli
-from plz.commands.init import DEFAULT_REQUIREMENTS_FILE
+from tests.utils import assert_cli_output
 
 
 # Sanity check
 def test_lock_create_lock_file(runner: CliRunner, isolated_dir: Path) -> None:
-    (isolated_dir / DEFAULT_REQUIREMENTS_FILE).touch()
+    (isolated_dir / "requirements.in").touch()
+    (isolated_dir / "dev-requirements.in").touch()
     # noinspection PyTypeChecker
-    result = runner.invoke(cli, "lock")
-    assert "Successfully lock requirements" in result.stdout
+    result = runner.invoke(cli, shlex.split("lock"))
+    assert_cli_output(result, expected_stdout="Successfully lock requirements")
 
-    assert (isolated_dir / "requirements.in").exists()
+    assert (isolated_dir / "requirements.txt").exists()
+    assert (isolated_dir / "dev-requirements.txt").exists()
 
 
 def test_lock_work_with_compile_argument(runner: CliRunner, isolated_dir: Path) -> None:
-    (isolated_dir / DEFAULT_REQUIREMENTS_FILE).touch()
+    (isolated_dir / "requirements.in").touch()
+    (isolated_dir / "dev-requirements.in").touch()
     # noinspection PyTypeChecker
     result = runner.invoke(cli, shlex.split("lock --pip-args '--progress-bar off'"))
-    assert "Successfully lock requirements" in result.stdout
+    assert_cli_output(result, expected_stdout="Successfully lock requirements")
 
-    assert (isolated_dir / "requirements.in").exists()
+    assert (isolated_dir / "requirements.txt").exists()
+    assert (isolated_dir / "dev-requirements.txt").exists()

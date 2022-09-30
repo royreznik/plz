@@ -14,9 +14,28 @@ VIRTUALENV_DIR_NAME = ".venv"
 @click.command("install")
 @click.pass_context
 @click.pass_obj
+@click.option(
+    "--production",
+    "-p",
+    is_flag=True,
+    default=False,
+    help="If True, dev requirements won't be installed",
+)
 def install(
-    obj: Dict[str, Path], ctx: click.Context, *args: Any, **kwargs: Any
+    obj: Dict[str, Path],
+    ctx: click.Context,
+    production: bool,
+    *args: Any,
+    **kwargs: Any
 ) -> None:
+    production = ctx.params.pop("production")
+
+    src_files = [str(obj["path"] / "requirements.txt")]
+    if not production:
+        src_files.append(str(obj["path"] / "dev-requirements.txt"))
+
+    kwargs["src_files"] = src_files
+
     if kwargs["python_executable"] is not None:
         ctx.forward(_sync.cli, *args, **kwargs)
         return

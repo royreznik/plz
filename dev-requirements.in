@@ -1,4 +1,4 @@
--r requirements.txt
+-r requirements.in
 pytest
 black
 isort
@@ -9,3 +9,4 @@ mypy
 wheel
 bump2version
 twine
+pytest-xdist

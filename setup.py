@@ -1,7 +1,7 @@
 from pathlib import Path
 from setuptools import setup
 
-DEPENDENCIES = Path("requirements.in").read_text().split()
+DEPENDENCIES = [r for r in Path("requirements.in").read_text().splitlines() if "-e" not in r]
 
 __version__ = "0.0.1"
 

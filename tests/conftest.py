@@ -22,3 +22,6 @@ def isolated_dir(
     runner_and_path: Tuple[CliRunner, Path]
 ) -> Generator[Path, None, None]:
     yield runner_and_path[1]
+
+
+pytest.register_assert_rewrite(".utils")

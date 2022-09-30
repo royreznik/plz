@@ -1,3 +1,4 @@
+-e file:.#egg=plz
 pip-tools
 virtualenv
 click
