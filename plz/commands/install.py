@@ -1,10 +1,9 @@
 import sys
 from pathlib import Path
-from typing import Dict
+from typing import Any, Dict
 
 import click
 import virtualenv
-from virtualenv.create.creator import Creator
 from piptools.__main__ import sync as _sync
 from virtualenv.discovery.py_info import PythonInfo
 
@@ -15,7 +14,9 @@ VIRTUALENV_DIR_NAME = ".venv"
 @click.command("install")
 @click.pass_context
 @click.pass_obj
-def install(obj: Dict, ctx: click.Context, *args, **kwargs) -> None:
+def install(
+    obj: Dict[str, Path], ctx: click.Context, *args: Any, **kwargs: Any
+) -> None:
     if kwargs["python_executable"] is not None:
         ctx.forward(_sync.cli, *args, **kwargs)
         return
@@ -23,11 +24,12 @@ def install(obj: Dict, ctx: click.Context, *args, **kwargs) -> None:
     venv_dir = obj["path"] / VIRTUALENV_DIR_NAME  # type: Path
     if not venv_dir.exists():
         virtualenv.cli_run([str(venv_dir)])
-    kwargs["python_executable"] = venv_dir / PythonInfo().install_path("scripts") / Path(sys.executable).name
+    kwargs["python_executable"] = (
+        venv_dir
+        / PythonInfo().install_path("scripts")
+        / Path("python").with_suffix(".exe" if sys.platform == "win32" else "")
+    )
     ctx.forward(_sync.cli, *args, **kwargs)
 
+
 install.params += _sync.cli.params
-
-
-def _is_inside_virtualenv():
-    return sys.prefix != sys.base_prefix

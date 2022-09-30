@@ -1,8 +1,8 @@
 from pathlib import Path
-from typing import Tuple, Generator
+from typing import Generator, Tuple
 
 import pytest as pytest
-from click.testing import CliRunner, Result
+from click.testing import CliRunner
 
 
 @pytest.fixture
@@ -18,6 +18,7 @@ def runner(runner_and_path: Tuple[CliRunner, Path]) -> Generator[CliRunner, None
 
 
 @pytest.fixture
-def isolated_dir(runner_and_path: Tuple[CliRunner, Path]) -> Generator[Path, None, None]:
+def isolated_dir(
+    runner_and_path: Tuple[CliRunner, Path]
+) -> Generator[Path, None, None]:
     yield runner_and_path[1]
-
