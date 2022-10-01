@@ -5,7 +5,7 @@
 #    pip-compile dev-requirements.in
 #
 -e file:.#egg=plz
-    # via -r requirements.in
+    # via -r dev-requirements.in
 attrs==22.1.0
     # via pytest
 black==22.8.0

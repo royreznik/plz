@@ -1,8 +1,7 @@
 BUMP_PART?=patch
 
 install:
-	python3 -m pip install .
-	plz install
+	python3 -m pip install -r dev-requirements.txt
 
 lint:
 	flake8 plz/ tests/
