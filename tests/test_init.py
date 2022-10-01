@@ -4,7 +4,8 @@ from pathlib import Path
 from click.testing import CliRunner
 
 from plz.__main__ import cli
-from plz.commands.init import DEFAULT_REQUIREMENTS_FILE
+from plz.commands.init import REQUIREMENTS_FILE
+from tests.utils import assert_cli_output
 
 
 def test_init_create_expected_files_in_cwd(
@@ -14,7 +15,7 @@ def test_init_create_expected_files_in_cwd(
     result = runner.invoke(cli, "init")
     assert "Requirements file created" in result.stdout
 
-    assert (isolated_dir / DEFAULT_REQUIREMENTS_FILE).exists()
+    assert (isolated_dir / REQUIREMENTS_FILE).exists()
 
 
 def test_init_create_expected_files_in_path(
@@ -26,14 +27,15 @@ def test_init_create_expected_files_in_path(
     result = runner.invoke(cli, shlex.split("-p dir init"))
     assert "Requirements file created" in result.stdout
 
-    assert (new_dir / DEFAULT_REQUIREMENTS_FILE).exists()
+    assert (new_dir / REQUIREMENTS_FILE).exists()
 
 
 def test_init_fails_on_files_already_exists(
     runner: CliRunner, isolated_dir: Path
 ) -> None:
-    (isolated_dir / DEFAULT_REQUIREMENTS_FILE).touch()
+    (isolated_dir / REQUIREMENTS_FILE).touch()
     # noinspection PyTypeChecker
     result = runner.invoke(cli, "init")
-    assert result.exit_code != 0
-    assert "already have requirements.in" in result.stderr
+    assert_cli_output(
+        result,
+    )

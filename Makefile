@@ -1,8 +1,7 @@
 BUMP_PART?=patch
 
 install:
-	python3 -m pip install -e .
-	python3 -m pip install -r dev-requirements.in # TODO: remove this when control dev deps in plz
+	python3 -m pip install -r dev-requirements.txt
 
 lint:
 	flake8 plz/ tests/
@@ -13,7 +12,7 @@ format:
 	black plz/ tests/
 
 test:
-	pytest -svv tests/
+	pytest -svv tests/ -n auto
 
 build:
 	rm -rf dist/

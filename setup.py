@@ -1,7 +1,7 @@
 from pathlib import Path
-from setuptools import setup
+from setuptools import setup, find_packages
 
-DEPENDENCIES = Path("requirements.in").read_text().split()
+DEPENDENCIES = Path("requirements.in").read_text().splitlines()
 
 __version__ = "0.0.1"
 
@@ -12,7 +12,7 @@ setup(
     version=__version__,
     author="Roy Reznik",
     author_email="royreznik@gmail.com",
-    packages=["plz"],
+    packages=find_packages(),
     entry_points={
         "console_scripts": [
             "plz = plz:cli",
