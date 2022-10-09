@@ -1,5 +1,5 @@
 -r requirements.in
--e file:.#egg=plz
+# -e file:.#egg=plz
 pytest
 black
 isort

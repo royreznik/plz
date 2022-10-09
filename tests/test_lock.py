@@ -3,7 +3,7 @@ from pathlib import Path
 
 from click.testing import CliRunner
 
-from plz.__main__ import cli
+from plz.plz_cli import cli
 from tests.utils import assert_cli_output
 
 
