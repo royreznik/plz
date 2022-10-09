@@ -13,6 +13,15 @@ Lightweight and simple python virtual environment and dependencies manager
 pip install plz
 ```
 
+Usage
+```bash
+plz init
+echo "reqeusts" >> requirements.in
+plz lock
+vi setup.py
+plz install
+```
+
 ## Developing
 ```bash
 make install
