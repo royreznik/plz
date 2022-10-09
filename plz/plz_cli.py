@@ -4,7 +4,6 @@ from pathlib import Path
 from typing import Any, Dict, cast
 
 import click
-
 import virtualenv
 from piptools.__main__ import compile as _compile
 from piptools.__main__ import sync as _sync
@@ -111,8 +110,8 @@ def install(
             ],
             capture_output=True,
         )
-        click.echo(f"pip stdout:\n{result.stdout}")
-        click.echo(f"pip stderr:\n{result.stderr}")
+        click.echo(f"pip stdout:\n{result.stdout!r}")
+        click.echo(f"pip stderr:\n{result.stderr!r}")
         if result.returncode != 0:
             raise click.BadParameter(
                 f"Failed to install root\n" f"command: {result.args}\n"

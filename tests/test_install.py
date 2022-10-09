@@ -9,7 +9,7 @@ import pytest
 from click.testing import CliRunner
 from virtualenv.discovery.py_info import PythonInfo
 
-from plz.plz_cli import cli, VIRTUALENV_DIR_NAME
+from plz.plz_cli import VIRTUALENV_DIR_NAME, cli
 from tests.utils import assert_cli_output
 
 
@@ -108,7 +108,7 @@ def test_install_sync_no_root(runner: CliRunner, isolated_dir: Path) -> None:
         assert subprocess.run([python_path, "-Ic", "import wtf"], check=True)
 
 
-def create_python_package_files(isolated_dir):
+def create_python_package_files(isolated_dir: Path) -> None:
     (isolated_dir / "requirements.txt").touch()
     (isolated_dir / "dev-requirements.txt").touch()
     (isolated_dir / "setup.py").write_text(
