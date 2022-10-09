@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 DEPENDENCIES = Path("requirements.in").read_text().splitlines()
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 readme = Path("README.md").read_text("UTF-8")
 
